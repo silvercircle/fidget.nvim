@@ -80,7 +80,7 @@ local function add_removed(state, now, group, item)
     end
 
     ---@cast item HistoryItem
-    item.last_updated = poll.unix_time(now)
+    item.last_updated = vim.fn.localtime() -- poll.unix_time(now)
     item.removed = true
     item.group_key = group.key
     item.group_name = group_name
@@ -99,7 +99,7 @@ end
 local function item_to_history(item, extra)
   ---@type HistoryItem
   item = vim.tbl_extend("force", item, extra)
-  item.last_updated = poll.unix_time(item.last_updated)
+  item.last_updated = vim.fn.localtime() -- poll.unix_time(item.last_updated)
   return item
 end
 
