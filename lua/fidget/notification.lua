@@ -301,7 +301,7 @@ function notification.notify(msg, level, opts)
     return
   end
 
-  local now = poll.get_time()
+  local now = vim.fn.localtime() -- poll.get_time()
   notification.model.update(now, notification.options.configs, state, msg, level, opts)
   notification.poller:start_polling(notification.options.poll_rate)
 end
